@@ -10,7 +10,6 @@ Game::Game():
                                   QString("%1 v.%2").arg("test").arg("test").toStdString(),
                                   sf::Style::Default, sf::ContextSettings(0,0,0)))
 {
-
 }
 
 Game::~Game()

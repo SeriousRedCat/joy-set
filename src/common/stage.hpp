@@ -2,6 +2,7 @@
 #define STAGE_HPP
 
 #include "istage.hpp"
+#include "fpscounter.hpp"
 
 class IGame;
 
@@ -23,6 +24,7 @@ class Stage : public IStage
 
     protected:
         IGame* m_game;
+        FPSCounter m_fpsCounter;
         OutputData m_outputData;
 };
 

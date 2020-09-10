@@ -1,12 +1,18 @@
 #include "stage.hpp"
 #include "igame.hpp"
 
+#include "../common/resourcemanager.hpp"
+
 #include <SFML/Graphics/RenderWindow.hpp>
+
+static const sf::Vector2f DEFAULT_FPS_POSITION(740, 2);
+static const QString DEFAULT_FPS_FONT_NAME("calibril");
 
 Stage::Stage(IGame *_game):
     m_game(_game)
 {
-
+    m_fpsCounter.setFont(m_game->resources()->font(DEFAULT_FPS_FONT_NAME));
+    m_fpsCounter.setPosition(DEFAULT_FPS_POSITION);
 }
 
 const OutputData Stage::outputData() const
@@ -28,6 +34,7 @@ bool Stage::run(double _dt, const QList<sf::Event> &_events)
 
 bool Stage::calculate(double _dt, const QList<sf::Event> &events)
 {
+    m_fpsCounter.update(_dt);
     return true;
 }
 
@@ -38,7 +45,7 @@ void Stage::updateGraphics()
 
 void Stage::draw(sf::RenderTarget *_target) const
 {
-
+    _target->draw(m_fpsCounter);
 }
 
 void Stage::reset()

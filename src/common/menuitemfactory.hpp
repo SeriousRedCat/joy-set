@@ -6,7 +6,8 @@
 
 #include <SFML/Graphics/Font.hpp>
 
-template<class ITEM, typename = typename std::enable_if_t<std::is_base_of<IMenuItem, ITEM>::value>>
+template<class ITEM,
+         typename = typename std::enable_if_t<std::is_base_of<IMenuItem, ITEM>::value>>
 class MenuItemFactory : public IMenuItemFactory
 {
     public:
@@ -21,34 +22,24 @@ class MenuItemFactory : public IMenuItemFactory
         }
         virtual ~MenuItemFactory() override = default;
 
-
-
         virtual IMenuItem* createItem(const QString& _text, int _val, bool _enabled) override
         {
             return createItemImpl(_text, _val, _enabled);
         }
 
+    protected:
         ITEM* createItemImpl(const QString& _text, int _val, bool _enabled)
         {
             ITEM* item = new ITEM(_val, _enabled);
-            item->setStyle(sf::Text::Bold);
-            item->setOutlineThickness(1);
-            item->setCharacterSize(30);
-            item->setFont(m_font);
-            item->setString(_text.toStdString());
-            item->setFillColor(sf::Color(_enabled ? 0xFF0000FF : 0x646464FF));
-            item->setOutlineColor(sf::Color::Green);
-
-            sf::FloatRect textRect = item->getLocalBounds();
+            item->init(_text, m_font);
+            item->setPosition(m_x, m_currentTop);
+            const sf::FloatRect textRect = item->getLocalBounds();
             item->setOrigin(textRect.left + textRect.width * 0.5f,
                             textRect.top + textRect.height * 0.5f);
-
-            item->setPosition(m_x, m_currentTop);
             m_currentTop += (textRect.height + m_interval);
             return item;
         }
 
-    protected:
         const unsigned int m_x;
         const unsigned int m_y;
         const unsigned int m_interval;

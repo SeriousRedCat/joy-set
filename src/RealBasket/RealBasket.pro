@@ -8,20 +8,26 @@ RESOURCES += \
     resources.qrc
 
 SOURCES += \
-        ../common/game.cpp \
-        ../common/menubase.cpp \
-        ../common/menubasefactory.cpp \
-        ../common/menuitem.cpp \
-        ../common/resourcemanager.cpp \
-        ../common/stage.cpp \
-        main.cpp \
-        realbasket.cpp
+    ../common/fpscounter.cpp \
+    ../common/game.cpp \
+    ../common/growingmenuitem.cpp \
+    ../common/growingmenuitemfactory.cpp \
+    ../common/menubase.cpp \
+    ../common/menubasefactory.cpp \
+    ../common/menuitem.cpp \
+    ../common/resourcemanager.cpp \
+    ../common/stage.cpp \
+    main.cpp \
+    realbasket.cpp
 
 HEADERS += \
     ../../include/igame.hpp \
     ../../include/istage.hpp \
     ../../include/istagefactory.hpp \
+    ../common/fpscounter.hpp \
     ../common/game.hpp \
+    ../common/growingmenuitem.hpp \
+    ../common/growingmenuitemfactory.hpp \
     ../common/menubase.hpp \
     ../common/menubasefactory.hpp \
     ../common/menuitem.hpp \

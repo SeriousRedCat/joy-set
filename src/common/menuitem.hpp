@@ -10,6 +10,8 @@ class MenuItem : public IMenuItem
         MenuItem(int _value, bool _enabled);
         virtual ~MenuItem() override = default;
 
+        virtual void init(const QString& _text, const sf::Font& _font) override;
+
         virtual int value() const override final;
         virtual bool isActive() const override final;
         virtual bool isEnabled() const override final;

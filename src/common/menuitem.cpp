@@ -9,6 +9,17 @@ MenuItem::MenuItem(int _value, bool _enabled):
 
 }
 
+void MenuItem::init(const QString& _text, const sf::Font& _font)
+{
+    setStyle(sf::Text::Bold);
+    setOutlineThickness(1);
+    setCharacterSize(30);
+    setFont(_font);
+    setString(_text.toStdString());
+    setFillColor(sf::Color(m_isEnabled ? 0xFF0000FF : 0x646464FF));
+    setOutlineColor(sf::Color::Green);
+}
+
 int MenuItem::value() const
 {
     return m_value;

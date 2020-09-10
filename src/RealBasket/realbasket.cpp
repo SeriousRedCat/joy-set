@@ -1,6 +1,6 @@
 #include "realbasket.hpp"
 #include "../common/menubasefactory.hpp"
-#include "../common/menuitemfactory.hpp"
+#include "../common/growingmenuitemfactory.hpp"
 #include "../common/menuitem.hpp"
 
 RealBasket::RealBasket()
@@ -11,11 +11,15 @@ RealBasket::RealBasket()
 bool RealBasket::init()
 {
     m_resources.registerFont("ziperhea");
+    m_resources.registerFont("calibril");
     m_resources.registerTexture("logo");
 
-    MenuItemFactory<MenuItem>* itemF =
-            new MenuItemFactory<MenuItem>(m_resources.font("ziperhea"), 400,
+    GrowingMenuItemFactory* itemF =
+            new GrowingMenuItemFactory(m_resources.font("ziperhea"), 400,
                                           250, 20);
+    itemF->setEasingType(QEasingCurve::Type::OutBounce);
+    itemF->setAnimationTime(0.5);
+    itemF->setFactor(2.);
 
     MenuBaseFactory* factory = new MenuBaseFactory(this, itemF);
     factory->addMenuPos("PLAY", 3, false);
