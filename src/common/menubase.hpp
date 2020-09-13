@@ -3,6 +3,7 @@
 
 #include "stage.hpp"
 
+#include <QVector>
 #include <SFML/Graphics/Sprite.hpp>
 
 class IMenuItem;
