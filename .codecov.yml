@@ -2,8 +2,8 @@ codecov:
   require_ci_to_pass: yes
   
 ignore:
- - "3rdParty/*"
- - "tests/*"
+ - "3rdParty/**/*"
+ - "tests/**/*"
 
 coverage:
   precision: 2
