@@ -18,6 +18,7 @@ QMAKE_CXXFLAGS += --coverage
 QMAKE_LFLAGS += --coverage
 
 INCLUDEPATH += \
+    ../3rdParty \
     ../include \
     ../src
 
