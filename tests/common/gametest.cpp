@@ -10,6 +10,6 @@ TEST_CASE("Getting cursor position", "[game]")
     Game game;
 
     SECTION("Simple case") {
-        REQUIRE_THROWS(game.cursorPos());
+
     }
 }

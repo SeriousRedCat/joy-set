@@ -1,6 +1,5 @@
 #include "growingmenuitem.hpp"
 
-#include <QDebug>
 GrowingMenuItem::GrowingMenuItem(int _value, bool _enabled):
     MenuItem(_value, _enabled),
     m_curve(QEasingCurve::Type::Linear),
@@ -39,26 +38,18 @@ void GrowingMenuItem::calculate(int _x, int _y, double _dt)
 {
     MenuItem::calculate(_x, _y, _dt);
 
+    double factor = 1.;
     if(m_isActive)
     {
-//        qDebug () << "CURR TIME:" << m_currentTime;
         m_currentTime += _dt;
         if(m_currentTime < m_animationTime)
         {
             const double progress = m_curve.valueForProgress(m_currentTime / m_animationTime);
-            const double currentFactor = 1. + (m_sizeFactor - 1.) * progress;
-//            qDebug() << currentFactor;
-            setCharacterSize(currentFactor * m_baseSize);
-            const sf::FloatRect textRect = getLocalBounds();
-            setOrigin(textRect.left + textRect.width * 0.5, textRect.top + textRect.height * 0.5);
-
+            factor = 1. + (m_sizeFactor - 1.) * progress;
         }
-        else /*if(m_inProgress)*/
+        else
         {
-            setCharacterSize(m_sizeFactor * m_baseSize);
-//            qDebug() << "COMPLETE" << m_sizeFactor;
-            const sf::FloatRect textRect = getLocalBounds();
-            setOrigin(textRect.left + textRect.width * 0.5, textRect.top + textRect.height * 0.5);
+            factor = m_sizeFactor;
             m_currentTime = m_animationTime;
         }
     }
@@ -68,19 +59,14 @@ void GrowingMenuItem::calculate(int _x, int _y, double _dt)
         if(m_currentTime > 0)
         {
             const double progress = m_curve.valueForProgress(1 - m_currentTime / m_animationTime);
-            const double currentFactor = m_sizeFactor - (m_sizeFactor - 1.) * progress;
-//            qDebug() << currentFactor;
-            setCharacterSize(currentFactor * m_baseSize);
-            const sf::FloatRect textRect = getLocalBounds();
-            setOrigin(textRect.left + textRect.width * 0.5, textRect.top + textRect.height * 0.5);
-
+            factor = m_sizeFactor - (m_sizeFactor - 1.) * progress;
         }
         else
         {
-            setCharacterSize(m_baseSize);
-            const sf::FloatRect textRect = getLocalBounds();
-            setOrigin(textRect.left + textRect.width * 0.5, textRect.top + textRect.height * 0.5);
             m_currentTime = 0;
         }
     }
+    setCharacterSize(m_baseSize * factor);
+    const sf::FloatRect textRect = getLocalBounds();
+    setOrigin(textRect.left + textRect.width * 0.5, textRect.top + textRect.height * 0.5);
 }

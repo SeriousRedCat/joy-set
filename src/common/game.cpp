@@ -53,6 +53,11 @@ void Game::run()
     }
 }
 
+bool Game::init()
+{
+    return true;
+}
+
 const QList<sf::Event> Game::pollEvents()
 {
     QList<sf::Event> rval;

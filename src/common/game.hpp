@@ -26,6 +26,8 @@ class Game : public IGame
 
         virtual void run();
 
+        virtual bool init() override;
+
         virtual const QList<sf::Event> pollEvents() override;
 
         const sf::Vector2i cursorPos() const override final;

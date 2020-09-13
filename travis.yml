@@ -1,0 +1,12 @@
+language: cpp
+dist: focal
+compiler: gcc
+
+install:
+- sudo apt-get install libsfml-dev
+- sudo apt-get install qt5-default
+
+script:
+- cd src/RealBasket
+- qmake
+- make
