@@ -10,3 +10,10 @@ script:
 - cd src/RealBasket
 - qmake
 - make
+- cd ../../tests
+- qmake
+- make
+- cd ../scripts
+- ./coverage.sh
+after_success:
+- bash <(curl -s https://codecov.io/bash)
