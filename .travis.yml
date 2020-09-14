@@ -11,7 +11,10 @@ install:
 - sudo apt-get install lcov
 
 script:
-- cd src/RealBasket
+- cd 3rdParty/Box2D
+- qmake
+- make
+- cd ../../src/RealBasket
 - qmake
 - make
 - cd ../../tests

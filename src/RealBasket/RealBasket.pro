@@ -2,7 +2,11 @@ TEMPLATE = app
 CONFIG += c++17
 CONFIG -= app_bundle
 
+LIBS += -L../../lib/Box2D
 LIBS += -lsfml-audio -lsfml-graphics -lsfml-network -lsfml-window -lsfml-system
+
+CONFIG(debug, debug|release): LIBS += -lBox2Dd
+CONFIG(release, debug|release): LIBS += -lBox2D
 
 RESOURCES += \
     resources.qrc
@@ -15,9 +19,12 @@ SOURCES += \
     ../common/menubase.cpp \
     ../common/menubasefactory.cpp \
     ../common/menuitem.cpp \
+    ../common/physicalstage.cpp \
     ../common/resourcemanager.cpp \
     ../common/stage.cpp \
     main.cpp \
+    pointlistener.cpp \
+    practice.cpp \
     realbasket.cpp
 
 HEADERS += \
@@ -31,11 +38,17 @@ HEADERS += \
     ../common/menubase.hpp \
     ../common/menubasefactory.hpp \
     ../common/menuitem.hpp \
+    ../common/physicalstage.hpp \
     ../common/resourcemanager.hpp \
     ../common/stage.hpp \
+    iball.hpp \
+    ipractice.h \
+    pointlistener.hpp \
+    practice.hpp \
     realbasket.hpp
 
 INCLUDEPATH += \
     ../ \
-    ../../include
+    ../../include \
+    ../../3rdParty
 
