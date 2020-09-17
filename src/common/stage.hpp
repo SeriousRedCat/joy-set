@@ -22,6 +22,8 @@ class Stage : public IStage
 
         virtual void reset() override;
 
+        virtual IGame * game() const override;
+
     protected:
         IGame* m_game;
         FPSCounter m_fpsCounter;

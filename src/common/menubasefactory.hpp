@@ -29,6 +29,7 @@ class MenuBaseFactory : public StageFactory<MenuBase>
         virtual ~MenuBaseFactory() override = default;
 
         virtual IStage* createStage() override;
+        virtual bool releaseStage() override;
 
         void addMenuPos(const QString& _text, int _value, bool _enabled);
 

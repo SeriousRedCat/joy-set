@@ -22,6 +22,8 @@ struct OutputData
     }
 };
 
+class IGame;
+
 class IStage
 {
     public:
@@ -35,6 +37,8 @@ class IStage
         virtual void draw(sf::RenderTarget* _target) const = 0;
 
         virtual void reset() = 0;
+
+        virtual IGame* game() const = 0;
 };
 
 #endif // ISTAGE_HPP

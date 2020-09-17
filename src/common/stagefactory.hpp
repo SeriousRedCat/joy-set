@@ -45,6 +45,7 @@ class StageFactory : public IStageFactory
             {
                 delete m_stage;
                 m_stage = nullptr;
+                m_initialized = false;
                 return true;
             }
             return false;

@@ -52,3 +52,8 @@ void Stage::reset()
 {
 
 }
+
+IGame *Stage::game() const
+{
+    return m_game;
+}

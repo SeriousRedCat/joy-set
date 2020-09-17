@@ -1,8 +1,9 @@
 #include "menubasefactory.hpp"
+#include "imenuitemfactory.hpp"
 
 MenuBaseFactory::MenuBaseFactory(IGame* _game,
                                  IMenuItemFactory* _factory):
-    StageFactory<MenuBase>(_game, true),
+    StageFactory<MenuBase>(_game, false),
     m_factory(_factory)
 {
 
@@ -24,6 +25,13 @@ IStage* MenuBaseFactory::createStage()
     }
 
     return menu;
+}
+
+bool MenuBaseFactory::releaseStage()
+{
+    StageFactory<MenuBase>::releaseStage();
+    m_factory->release();
+    return true;
 }
 
 void MenuBaseFactory::addMenuPos(const QString& _text, int _value, bool _enabled)

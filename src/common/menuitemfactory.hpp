@@ -17,6 +17,7 @@ class MenuItemFactory : public IMenuItemFactory
             m_y(_y),
             m_interval(_interval),
             m_font(_font),
+            m_baseTop(_y),
             m_currentTop(_y) {
 
         }
@@ -25,6 +26,11 @@ class MenuItemFactory : public IMenuItemFactory
         virtual IMenuItem* createItem(const QString& _text, int _val, bool _enabled) override
         {
             return createItemImpl(_text, _val, _enabled);
+        }
+
+        virtual void release() override
+        {
+            m_currentTop = m_baseTop;
         }
 
     protected:
@@ -44,6 +50,8 @@ class MenuItemFactory : public IMenuItemFactory
         const unsigned int m_y;
         const unsigned int m_interval;
         const sf::Font m_font;
+
+        const unsigned int m_baseTop;
 
         unsigned int m_currentTop;
 

@@ -2,8 +2,9 @@
 #define IBALL_HPP
 
 #include <Box2D/Common/b2Math.h>
+#include "common/gameobject.hpp"
 
-class IBall
+class IBall : virtual public GameObject
 {
     public:
         virtual ~IBall() = default;
@@ -14,6 +15,8 @@ class IBall
 
         virtual void setInBasket(bool _inBasket) = 0;
         virtual void setThrown(bool _thrown) = 0;
+
+        virtual b2Body* body() const = 0;
 };
 
 #endif // IBALL_HPP

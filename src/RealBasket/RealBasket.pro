@@ -12,16 +12,21 @@ RESOURCES += \
     resources.qrc
 
 SOURCES += \
+    ../common/drawable.cpp \
     ../common/fpscounter.cpp \
     ../common/game.cpp \
+    ../common/gameobject.cpp \
     ../common/growingmenuitem.cpp \
     ../common/growingmenuitemfactory.cpp \
     ../common/menubase.cpp \
     ../common/menubasefactory.cpp \
     ../common/menuitem.cpp \
+    ../common/physicalobject.cpp \
     ../common/physicalstage.cpp \
     ../common/resourcemanager.cpp \
     ../common/stage.cpp \
+    ball.cpp \
+    ballcallback.cpp \
     main.cpp \
     pointlistener.cpp \
     practice.cpp \
@@ -31,16 +36,21 @@ HEADERS += \
     ../../include/igame.hpp \
     ../../include/istage.hpp \
     ../../include/istagefactory.hpp \
+    ../common/drawable.hpp \
     ../common/fpscounter.hpp \
     ../common/game.hpp \
+    ../common/gameobject.hpp \
     ../common/growingmenuitem.hpp \
     ../common/growingmenuitemfactory.hpp \
     ../common/menubase.hpp \
     ../common/menubasefactory.hpp \
     ../common/menuitem.hpp \
+    ../common/physicalobject.hpp \
     ../common/physicalstage.hpp \
     ../common/resourcemanager.hpp \
     ../common/stage.hpp \
+    ball.hpp \
+    ballcallback.hpp \
     iball.hpp \
     ipractice.h \
     pointlistener.hpp \
