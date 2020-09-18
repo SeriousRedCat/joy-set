@@ -2,6 +2,7 @@
 #define PRACTICE_HPP
 
 #include <QObject>
+#include <QVector>
 
 #include "common/physicalstage.hpp"
 #include "ipractice.hpp"
