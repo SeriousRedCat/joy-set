@@ -36,6 +36,9 @@ bool ResourceManager::registerTexture(const QString& _name)
     if(!sfTexture.loadFromMemory(rTexture.data(), static_cast<size_t>(rTexture.size())))
         return false;
 
+    sfTexture.setSmooth(true);
+    sfTexture.setRepeated(true);
+
     m_textures[_name] = std::move(sfTexture);
     return true;
 }

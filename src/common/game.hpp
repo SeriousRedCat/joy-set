@@ -15,12 +15,6 @@ class IStageFactory;
 class Game : public IGame
 {
     public:
-        enum StageType{
-            EXIT = 0,
-            MENU,
-            USER_STAGE = 1000
-        };
-
         Game();
         virtual ~Game() override;
 

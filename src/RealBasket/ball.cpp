@@ -2,11 +2,13 @@
 
 #include "common/physicalstage.hpp"
 #include "igame.hpp"
+#include "ipractice.hpp"
 #include "common/resourcemanager.hpp"
 
 static constexpr float BALL_DENSITY = 1.f;
 static constexpr float BALL_FRICTION = 1.f;
 static constexpr float BALL_RESTITUTION = 0.5f;
+static const QString BALL_RESOURCE("ball");
 
 Ball::Ball(PhysicalStage *_stage, double _x, double _y, double _radius):
     GameObject(_stage), m_inBasket(false), m_isThrown(false), m_throwDistance(0.)
@@ -23,11 +25,11 @@ Ball::Ball(PhysicalStage *_stage, double _x, double _y, double _radius):
     fdef.density = BALL_DENSITY;
     fdef.friction = BALL_FRICTION;
     fdef.restitution = BALL_RESTITUTION;
-    fdef.filter.categoryBits = 0x0002;
+    fdef.filter.categoryBits = static_cast<int>(EnFixtureType::BALL);
 
     auto fixture = addPart(bdef, fdef)->GetFixtureList();
     fixture->SetUserData(this);
-    sf::Sprite* sprite = new sf::Sprite(m_stage->game()->resources()->texture("ball"));
+    sf::Sprite* sprite = new sf::Sprite(m_stage->game()->resources()->texture(BALL_RESOURCE));
     double scale = (_radius * 2. * m_stage->pixelsPerMeter()) / sprite->getLocalBounds().width;
     double origin = _radius * m_stage->pixelsPerMeter() / scale;
     sprite->setScale(scale, scale);

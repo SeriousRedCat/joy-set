@@ -14,6 +14,11 @@ class ResourceManager;
 class IGame
 {
     public:
+        enum StageType{
+            EXIT = 0,
+            MENU,
+            USER_STAGE = 1000
+        };
         virtual ~IGame() = default;
 
         virtual bool init() = 0;

@@ -22,22 +22,18 @@ INCLUDEPATH += \
     ../include \
     ../src
 
-
+LIBS += -L../lib/Box2D
 LIBS += -lsfml-audio -lsfml-graphics -lsfml-network -lsfml-window -lsfml-system
 
-SOURCES +=  \
-    ../3rdParty/catch2/main.cpp \
-    common/gametest.cpp \
-    common/growingmenuitemtest.cpp \
-    common/leveltest.cpp
+CONFIG(debug, debug|release): LIBS += -lBox2Dd
+CONFIG(release, debug|release): LIBS += -lBox2D
 
-SOURCES += \
-../src/common/fpscounter.cpp \
-../src/common/game.cpp \
-../src/common/growingmenuitem.cpp \
-../src/common/growingmenuitemfactory.cpp \
-../src/common/menubase.cpp \
-../src/common/menubasefactory.cpp \
-../src/common/menuitem.cpp \
-../src/common/resourcemanager.cpp \
-../src/common/stage.cpp
+HEADERS += $$files($$PWD/../src/*.hpp, true)
+HEADERS += $$files($$PWD/../include/*.hpp)
+HEADERS += $$PWD/../3rdParty/catch2/catch.hpp
+
+SOURCES += $$files($$PWD/../src/*.cpp, true)
+SOURCES += $$files($$PWD/*.cpp, true)
+SOURCES -= $$files($$PWD/moc_*.cpp, true)
+SOURCES -= $$files($$PWD/../src/main.*, true)
+SOURCES += $$PWD/../3rdParty/catch2/main.cpp

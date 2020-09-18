@@ -1,10 +1,12 @@
 ﻿#include "practice.hpp"
 #include "pointlistener.hpp"
 #include "ball.hpp"
+#include "basket.hpp"
 #include "ballcallback.hpp"
 
 #include "igame.hpp"
 
+#include <QDebug>
 Practice::Practice(IGame* _game):
     PhysicalStage(_game, 100., b2Vec2(0.0, -7.8)),
     m_caughtBall(nullptr),
@@ -14,6 +16,12 @@ Practice::Practice(IGame* _game):
 {
     createFrame(TOP | BOTTOM | LEFT | RIGHT);
     m_balls.push_back(new Ball(this, 3, 3, 0.25));
+    m_basket = new Basket(this, 7.7, 3, 0.55);
+
+    m_pointListener = new PointListener(this);
+    m_world->SetContactListener(m_pointListener);
+
+    connect(m_pointListener, &PointListener::pointsEarned, this, &Practice::onPointsEarned);
 }
 
 void Practice::draw(sf::RenderTarget *_target) const
@@ -22,6 +30,8 @@ void Practice::draw(sf::RenderTarget *_target) const
 
     for(IBall* ball : m_balls)
         _target->draw(*ball);
+
+    _target->draw(*m_basket);
 }
 
 void Practice::updateGraphics()
@@ -30,6 +40,8 @@ void Practice::updateGraphics()
 
     for(IBall* ball : qAsConst(m_balls))
         ball->updateGraphics();
+
+    m_basket->updateGraphics();
 }
 
 void Practice::onMouseDown(const sf::Vector2i &_pos)
@@ -65,7 +77,7 @@ void Practice::onMouseUp()
 {
     if(m_mouseJoint)
     {
-//        m_caughtBall->calculateThrowDistance(m_basket->baseX());
+        m_caughtBall->calculateThrowDistance(m_basket->baseX());
         m_caughtBall->setThrown(true);
         m_world->DestroyJoint(m_mouseJoint);
         m_mouseJoint = nullptr;
@@ -89,8 +101,7 @@ IBall *Practice::ballUnderCursor(const b2Vec2 &_pos) const
 
 void Practice::back()
 {
-    m_outputData.nextStage = 1;
-//    m_wantExit = true;
+    m_outputData.nextStage = IGame::StageType::MENU;
 }
 
 bool Practice::calculate(double _dt, const QList<sf::Event> &_events)
@@ -115,4 +126,14 @@ bool Practice::calculate(double _dt, const QList<sf::Event> &_events)
         onMouseUp();
 
     return PhysicalStage::calculate(_dt, _events);
+}
+
+double Practice::basketHeight() const
+{
+    return m_basket->height();
+}
+
+void Practice::onPointsEarned(IBall *_ball)
+{
+    qDebug() << "Points:" << _ball->throwDistance();
 }

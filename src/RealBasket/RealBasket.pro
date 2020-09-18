@@ -27,6 +27,7 @@ SOURCES += \
     ../common/stage.cpp \
     ball.cpp \
     ballcallback.cpp \
+    basket.cpp \
     main.cpp \
     pointlistener.cpp \
     practice.cpp \
@@ -51,7 +52,9 @@ HEADERS += \
     ../common/stage.hpp \
     ball.hpp \
     ballcallback.hpp \
+    basket.hpp \
     iball.hpp \
+    ibasket.hpp \
     ipractice.h \
     pointlistener.hpp \
     practice.hpp \

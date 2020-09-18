@@ -29,6 +29,7 @@ void PointListener::BeginContact(b2Contact *contact)
     if(!ball->isThrown())
         return;
 
+    qDebug () << "TEST" << ball->position().y;
     if(ball->position().y > m_basketHeight)
         ball->setInBasket(true);
 }

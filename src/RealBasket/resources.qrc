@@ -7,5 +7,6 @@
     <qresource prefix="/graphics">
         <file alias="logo">resources/graphics/logo.png</file>
         <file alias="ball">resources/graphics/ball.png</file>
+        <file alias="concrete">resources/graphics/concrete.png</file>
     </qresource>
 </RCC>

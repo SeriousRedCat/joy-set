@@ -11,12 +11,15 @@ class IBall : virtual public GameObject
 
         virtual bool isThrown() const = 0;
         virtual bool inBasket() const = 0;
+        virtual double throwDistance() const = 0;
         virtual b2Vec2 position() const = 0;
 
         virtual void setInBasket(bool _inBasket) = 0;
         virtual void setThrown(bool _thrown) = 0;
 
         virtual b2Body* body() const = 0;
+
+        virtual void calculateThrowDistance(double _basket_pos) = 0;
 };
 
 #endif // IBALL_HPP

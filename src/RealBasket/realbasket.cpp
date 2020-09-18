@@ -20,6 +20,7 @@ bool RealBasket::init()
     m_resources.registerFont("calibril");
     m_resources.registerTexture("logo");
     m_resources.registerTexture("ball");
+    m_resources.registerTexture("concrete");
 
     GrowingMenuItemFactory* itemF =
             new GrowingMenuItemFactory(m_resources.font("ziperhea"), 400,

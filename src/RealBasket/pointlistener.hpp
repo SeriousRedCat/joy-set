@@ -12,7 +12,7 @@ class PointListener : public QObject, public b2ContactListener
 {
         Q_OBJECT
     public:
-        PointListener(IPractice* _stage);
+        PointListener(IPractice *_stage);
         virtual ~PointListener() = default;
 
         virtual void BeginContact(b2Contact *contact) override;
