@@ -30,6 +30,7 @@ SOURCES += \
     basket.cpp \
     main.cpp \
     pointlistener.cpp \
+    pointsinfotext.cpp \
     practice.cpp \
     realbasket.cpp
 
@@ -57,6 +58,7 @@ HEADERS += \
     ibasket.hpp \
     ipractice.h \
     pointlistener.hpp \
+    pointsinfotext.hpp \
     practice.hpp \
     realbasket.hpp
 

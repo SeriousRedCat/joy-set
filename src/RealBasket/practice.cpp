@@ -3,8 +3,9 @@
 #include "ball.hpp"
 #include "basket.hpp"
 #include "ballcallback.hpp"
-
+#include "pointsinfotext.hpp"
 #include "igame.hpp"
+#include "common/resourcemanager.hpp"
 
 #include <QDebug>
 Practice::Practice(IGame* _game):
@@ -32,6 +33,11 @@ void Practice::draw(sf::RenderTarget *_target) const
         _target->draw(*ball);
 
     _target->draw(*m_basket);
+
+    for(auto& info : m_infos)
+    {
+        _target->draw(*info);
+    }
 }
 
 void Practice::updateGraphics()
@@ -42,6 +48,21 @@ void Practice::updateGraphics()
         ball->updateGraphics();
 
     m_basket->updateGraphics();
+
+    for (auto it=m_infos.begin(); it!=m_infos.end();)
+    {
+
+       if((*it)->isDone())
+       {
+           delete *it;
+           m_infos.erase(it);
+#ifdef _MSC_VER
+           break;
+#endif
+       }
+       else
+          ++it;
+     }
 }
 
 void Practice::onMouseDown(const sf::Vector2i &_pos)
@@ -125,6 +146,11 @@ bool Practice::calculate(double _dt, const QList<sf::Event> &_events)
     else
         onMouseUp();
 
+    for(auto& info : m_infos)
+    {
+        info->calculate(_dt);
+    }
+
     return PhysicalStage::calculate(_dt, _events);
 }
 
@@ -136,4 +162,10 @@ double Practice::basketHeight() const
 void Practice::onPointsEarned(IBall *_ball)
 {
     qDebug() << "Points:" << _ball->throwDistance();
+
+    sf::Vector2f pos = world2Screen(_ball->thrownPosition().x, _ball->thrownPosition().y);
+    auto pi = new PointsInfoText(m_game->resources()->font("ziperhea"), _ball->throwDistance(), pos.x, pos.y, pos.y - 100, 10, 0);
+    pi->init();
+    m_infos.push_back(pi);
+
 }

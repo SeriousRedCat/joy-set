@@ -10,6 +10,7 @@
 class IBall;
 class IBasket;
 class PointListener;
+class PointsInfoText;
 
 class Practice : public QObject, public IPractice, public PhysicalStage
 {
@@ -28,6 +29,7 @@ class Practice : public QObject, public IPractice, public PhysicalStage
         void onPointsEarned(IBall* _ball);
     protected:
         QVector<IBall*> m_balls;
+        QVector<PointsInfoText*> m_infos;
         IBall* m_caughtBall;
         IBasket* m_basket;
         b2MouseJoint* m_mouseJoint;

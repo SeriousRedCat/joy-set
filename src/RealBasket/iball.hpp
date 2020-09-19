@@ -13,6 +13,7 @@ class IBall : virtual public GameObject
         virtual bool inBasket() const = 0;
         virtual double throwDistance() const = 0;
         virtual b2Vec2 position() const = 0;
+        virtual b2Vec2 thrownPosition() const = 0;
 
         virtual void setInBasket(bool _inBasket) = 0;
         virtual void setThrown(bool _thrown) = 0;
