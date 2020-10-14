@@ -22,7 +22,5 @@ script:
 - make
 - cd ../bin
 - ./tests
-- cd ../scripts
-- ./coverage.sh
 after_success:
 - bash <(curl -s https://codecov.io/bash)
